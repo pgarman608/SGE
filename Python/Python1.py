@@ -1,3 +1,4 @@
+#Actividad hecha por Pablo García Manzano de 2ºDAM
 Lista=[]
 def existe_codigo(arg1):
     aux = True
@@ -13,21 +14,7 @@ def añadirArticulo():
         if codigo != "f":
             if existe_codigo(codigo) == True:
                 print("Introduce las carateristicas del articulo")
-                nombre = str(input("Nombre: "))
-                descripcion = str(input("Descripcion: "))
-                aux = False
-                while aux == false:
-                    pr = str(input("Precio: "))
-                    if pr.isdigit():
-                        precio = int(pr)
-                        articulo = {"Codigo": codigo,
-                                    "Nombre": nombre,
-                                    "Descripicon": descripcion,
-                                    "Precio": precio}
-                        aux == True
-                        Lista.append(articulo)
-                    else:
-                        print("El precio es incorrecto, vuelve a meter el precio")
+                addArticulo(codigo)
             else:
                 print("Ese articulo con ese codigo ya existe")
         else:
@@ -74,12 +61,36 @@ def modificarArticulo():
     exit = True
     while (exit == True):
         modArt = str(input("Elige el codigo del producto que desea modificar(f para salir)"))
-        if modArt != "f":
-            for articulo in Lista:
-                if modArt in articulo.values():
-                    
+        if modArt == "f":
+            exit = False
         else:
-            exit == False
+            count = 0
+            for e in Lista.copy():
+                if e["Codigo"] == modArt:
+                    print("Introduce el nuevo nombre, descripcion y precio")
+                    Lista.remove(e)
+                    addArticulo(modArt)
+                    count = 1
+            if count == 0:
+                print("No existe un codigo ")
+
+def addArticulo(arg1):
+    nombre = str(input("Nombre: "))
+    descripcion = str(input("Descripcion: "))
+    aux = False
+    while aux == False:
+        pr = str(input("Precio: "))
+        if pr.isdigit():
+            precio = int(pr)
+            articulo = {"Codigo": arg1,
+                        "Nombre": nombre,
+                        "Descripicon": descripcion,
+                        "Precio": precio}
+            aux = True
+            Lista.append(articulo)
+        else:
+            print("El precio es incorrecto, vuelve a meter el precio")
+
 def menu():
     print("1 - Dar de alta")
     print("2 - Dar de baja")
