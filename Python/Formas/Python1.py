@@ -1,6 +1,3 @@
-from traceback import format_exc
-
-
 class Punto:
     x = 0
     y = 0
