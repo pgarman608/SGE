@@ -114,7 +114,6 @@ listaFiguras.append(elipse)
 listaFiguras.append(circulo)
 
 for figura in listaFiguras:
-    
     print(figura.toString())
     figura.setColor("rojo")
     figura.setCoord(20,20)

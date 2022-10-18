@@ -14,7 +14,8 @@ class Empleado():
     def toString(self):
         aux = "Nombre: " + self.nombre + "\nApellidos :" + self.apellido1 + " " + self.apellido2
         aux = aux + "\nDNI: " + self.dni + "\nDireccion: " + str(self.direccion) + "\nTelefono: " + str(self.telefono)
-        aux = aux + "\nSalario: " + self.salario + "\nSupervisor: " + self.supervisor
+        aux = aux + "\nSalario: " + str(self.salario) + "\nSupervisor: " + self.supervisor
+        return aux
 
     def setSupervisor(self,supervisor=""):
         self.supervisor = supervisor
@@ -23,7 +24,7 @@ class Empleado():
         self.salario *= self.multiplicador
 
 class Secretario(Empleado):
-    def __init__(self, nombre="", apellido1="", apellido2="", dni="", direccion="", telefono=0, salario=1, supervisor=Empleado()
+    def __init__(self, nombre="", apellido1="", apellido2="", dni="", direccion="", telefono=0, salario=1, supervisor=""
     ,despacho="",fax=0):
         super().__init__(nombre, apellido1, apellido2, dni, direccion, telefono, salario, supervisor)
         self.despacho = despacho
@@ -40,7 +41,7 @@ class Coche():
         self.modelo = modelo
 
 class Vendedor(Empleado):
-    def __init__(self, nombre="", apellido1="", apellido2="", dni="", direccion="", telefono=0, salario=1, supervisor=Empleado(),
+    def __init__(self, nombre="", apellido1="", apellido2="", dni="", direccion="", telefono=0, salario=1, supervisor="",
     coche=Coche(),telefonoMovil=0,areaTrabajo="",listaClientes=list(),porcentajeVentas=0):
         super().__init__(nombre, apellido1, apellido2, dni, direccion, telefono, salario, supervisor)
         self.multiplicador = 1.10
@@ -61,8 +62,14 @@ class Vendedor(Empleado):
 
     def toString(self):
         aux = "Vendedor: \n" + super().toString() + "\nCoche" + self.coche.matricula + "\nTelefono Movil: " + str(self.telefonoMovil)
-        aux = aux + "\nArea de trabajo: " + self.areaTrabajo + "\nLista de clientes: " + self.listaClientes
-        aux = aux + + "\nPorecentaje de las ventas: " + str(self.porcentajeVentas)
+        aux = aux + "\nArea de trabajo: " + self.areaTrabajo + "\nLista de clientes: " + self.clientes()
+        aux = aux + "\nPorecentaje de las ventas: " + str(self.porcentajeVentas)
+        return aux
+
+    def clientes(self):
+        aux =""
+        for cliente in self.listaClientes:
+            aux = aux + cliente +", "
         return aux
 
 class JefeZona(Empleado):
@@ -77,7 +84,7 @@ class JefeZona(Empleado):
 
     def toString(self):
         aux = "Jefe de Zona: \n" + super().toString() + "\nSecretario: " + self.secretario.dni + "\nDespacho: " + self.despacho
-        aux = aux + "\nLista de Vendedores" + self.listaVendedores + "\nCoche: " + self.coche
+        aux = aux + "\nLista de Vendedores: " + self.vendedores() + "\nCoche: " + self.coche.matricula
         return aux
 
     def setSecretario(self,secretario=Secretario()):
@@ -85,3 +92,29 @@ class JefeZona(Empleado):
 
     def setCoche(self,coche=Coche()):
         self.coche = coche
+
+    def vendedores(self):
+        aux =""
+        for vendedor in self.listaVendedores:
+            aux = aux + vendedor.Nombre +", "
+        return aux
+"""Programa de prueba"""
+empleado1 = Empleado("Pablo","fernandez","Zamora","1932310O","Calle AB,12",123123123,1400)
+secretario1 = Secretario("Antonio","Zamora","Zamora","1928319I","Calle A,1",123123123,1400,empleado1.dni,"Despacho1",323223232)
+vendedor1 = Vendedor("Miguel","Ruiz","Moreno","6632310P","Calle C,3",123123123,1400,empleado1.dni,Coche("1234str","Kia","X"),444555666,"Madrid",["Cliente1"],1.03)
+jefe1 = JefeZona("Luis","Garcia","alvarez","7775510T","Calle CB,5",123123123,1400,"Sin Supervisor",secretario1,"GranDespacho1",[vendedor1],Coche("3412ttt","kia","A"))
+
+print(empleado1.toString())
+print(secretario1.toString())
+print(vendedor1.toString())
+print(jefe1.toString())
+
+empleado1.incrementarSalario()
+secretario1.incrementarSalario()
+vendedor1.incrementarSalario()
+jefe1.incrementarSalario()
+
+print(empleado1.toString())
+print(secretario1.toString())
+print(vendedor1.toString())
+print(jefe1.toString())
