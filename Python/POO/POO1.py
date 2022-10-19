@@ -10,7 +10,15 @@ class Persona():
         self.__sexo = sexo
 
     def calcularMC(self):
-        return self.__peso * (self.__altura^2)
+        peso =  (self.__altura*self.__altura) / self.__peso
+        stn=""
+        if peso >= 1:
+            stn = "Tiene sobrepeso"
+        elif peso >= 0:
+            stn = "Tiene un peso ideal"
+        elif peso <= -1:
+            stn = "Tiene un peso bajo"
+        return stn
 
     def esMayorDeEdad(self):
         aux = "Es mayor de edad"
@@ -29,8 +37,11 @@ class Persona():
 
     def __generarDNI(self):
         charDni = ["T","R","W","A","G","M","Y","F","P","D","X","N","J","Z","S","Q","V","H","L","C","K","E"]
-        num = Random.randrange(10000000,99999999)
-        dni = str(num) + charDni[num/23]
+        rnd = Random()
+        num = ""
+        for i in range(8):
+            num += str(rnd.randint(1,9))
+        dni = num + charDni[(int(num)%23)-1]
         return dni
     def setNombre(self,nombre):
         self.__nombre = nombre
@@ -44,11 +55,20 @@ class Persona():
         self.__sexo = sexo
 """Programa"""
 nombre = input("Introduce el nombre: ")
-edad = input("Introduce la edad: ")
+edad = int(input("Introduce la edad: "))
 sexo = input("Introduce el sexo: ")
-peso = input("Introduce el peso: ")
-altura = input("Introduce la altura: ")
+peso = int(input("Introduce el peso: "))
+altura = float(input("Introduce la altura: "))
 persona1 = Persona(nombre,edad,peso,altura,sexo)
 persona2 = Persona(nombre,edad,0,0,sexo)
 persona3 = Persona()
 print(persona1.calcularMC())
+print(persona1.esMayorDeEdad())
+print(persona2.esMayorDeEdad())
+print(persona3.esMayorDeEdad())
+print(persona1.toString())
+print("----------------------")
+print(persona2.toString())
+print("----------------------")
+print(persona3.toString())
+print("----------------------")
