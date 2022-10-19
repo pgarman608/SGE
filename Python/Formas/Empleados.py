@@ -96,25 +96,32 @@ class JefeZona(Empleado):
     def vendedores(self):
         aux =""
         for vendedor in self.listaVendedores:
-            aux = aux + vendedor.Nombre +", "
+            aux = aux + vendedor.nombre +", "
         return aux
 """Programa de prueba"""
 empleado1 = Empleado("Pablo","fernandez","Zamora","1932310O","Calle AB,12",123123123,1400)
 secretario1 = Secretario("Antonio","Zamora","Zamora","1928319I","Calle A,1",123123123,1400,empleado1.dni,"Despacho1",323223232)
 vendedor1 = Vendedor("Miguel","Ruiz","Moreno","6632310P","Calle C,3",123123123,1400,empleado1.dni,Coche("1234str","Kia","X"),444555666,"Madrid",["Cliente1"],1.03)
 jefe1 = JefeZona("Luis","Garcia","alvarez","7775510T","Calle CB,5",123123123,1400,"Sin Supervisor",secretario1,"GranDespacho1",[vendedor1],Coche("3412ttt","kia","A"))
-
+print("---------------------")
 print(empleado1.toString())
+print(".-.-.")
 print(secretario1.toString())
+print(".-.-.")
 print(vendedor1.toString())
+print(".-.-.")
 print(jefe1.toString())
-
+print("---------------------")
 empleado1.incrementarSalario()
 secretario1.incrementarSalario()
 vendedor1.incrementarSalario()
 jefe1.incrementarSalario()
-
+print("---------------------")
 print(empleado1.toString())
+print(".-.-.")
 print(secretario1.toString())
+print(".-.-.")
 print(vendedor1.toString())
+print(".-.-.")
 print(jefe1.toString())
+print("---------------------")
