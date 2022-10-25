@@ -1,6 +1,7 @@
 from random import Random
 
 class Persona():
+    """El init de la clase"""
     def __init__(self,nombre="",edad=0,peso=0,altura=0,sexo="M"):
         self.__nombre = nombre
         self.__edad = edad
@@ -8,7 +9,7 @@ class Persona():
         self.__peso = peso
         self.__altura = altura
         self.__sexo = sexo
-
+    """Pasaremos si la persona está en su peso"""
     def calcularMC(self):
         stn = 0
         peso = 0
@@ -21,22 +22,22 @@ class Persona():
         else:
             stn = -2
         return stn,peso
-
+    """Pasaremos si es menor o mayor de edad"""
     def esMayorDeEdad(self):
         aux = "Es mayor de edad"
         if(self.__edad < 18):
             aux = "Es menor de edad"
         return aux
-
+    """Setter del sexo"""
     def introducirSexo(self,sexo):
         if(str.upper(sexo)== "H"):
             self.__sexo = "H"
-
+    """Pasaremos todos los metodos como si fuesen un String"""
     def toString(self):
         aux = "Nombre: " + self.__nombre + "\nDNI: " + str(self.__dni) + "\nEdad: " + str(self.__edad) + "\nSexo: " + self.__sexo
         aux = aux + "\nPeso: " + str(self.__peso) + "\nAltura: " + str(self.__altura)
         return aux
-
+    """Generaremos el DNI de la persona"""
     def __generarDNI(self):
         charDni = ["T","R","W","A","G","M","Y","F","P","D","X","N","J","Z","S","Q","V","H","L","C","K","E"]
         rnd = Random()
@@ -45,7 +46,7 @@ class Persona():
             num += str(rnd.randint(1,9))
         dni = num + charDni[(int(num)%23)-1]
         return dni
-
+    """Setters del nombre, altura, edad, peso y Sexo"""
     def setNombre(self,nombre):
         self.__nombre = nombre
 

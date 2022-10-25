@@ -1,11 +1,12 @@
 class Serie():
+    """El init de la clase"""
     def __init__(self,titulo="",numTemporadas=3,genero="",creador=""):
         self.titulo = titulo
         self.numTemporadas = numTemporadas
         self.entregado = False
         self.genero = genero
         self.creador = creador
-
+    """Setters del titulo, NumTemporadas, Genero, Creador"""
     def setTitulo(self,titulo=""):
         self.titulo = titulo
 
@@ -17,7 +18,7 @@ class Serie():
 
     def setCreador(self,creador=""):
         self.creador = creador
-
+    """Getters del titulo, NumTemporadas, Genero, Creador"""
     def getTitulo(self):
         return self.titulo
 
@@ -29,23 +30,24 @@ class Serie():
 
     def getCreador(self):
         return self.creador
-
+    """Pasaremos todos los metodos como si fuesen un String"""
     def toString(self):
         aux = "Serie: \nTitulo: " + self.titulo + "\nEntregado: " + self.entregado + "\nNumero de Temporadas: " + str(self.numTemporadas)
         aux += "\nGenero: " + self.genero + "\nCreador: " + self.creador
         return aux
-
+    """Pondremos la entrega a true"""
     def entregar(self):
         self.entregado = True
 
 class Videojuego():
+    """El init de la clase"""
     def __init__(self,titulo="",horasEstimadas=10,genero="",compania=""):
         self.titulo = titulo
         self.horasEstimadas=horasEstimadas
         self.entregado = False
         self.genero = genero
         self.compania = compania
-
+    """Setters del titulo, genero, horas estimadas, comapañia"""
     def setTitulo(self,titulo=""):
         self.titulo = titulo
 
@@ -57,7 +59,7 @@ class Videojuego():
 
     def setCompania(self,compania=""):
         self.compania = compania
-
+    """Getters del titulo, genero, horas estimadas, comapañia"""
     def getTitulo(self):
         return self.titulo
 
@@ -69,12 +71,12 @@ class Videojuego():
 
     def getCompania(self):
         return self.compania
-
+    """Pasaremos todos los metodos como si fuesen un String"""
     def toString(self):
         aux = "Videojuego: \nTitulo: " + self.titulo + "\nEntregado: " + self.entregado + "\nHoras Estimadas: " + str(self.horasEstimadas)
         aux += "\nGenero: " + self.genero + "\nCompania: " + self.compania
         return aux
-
+    """Pondremos la entrega a true"""
     def entregar(self):
         self.entregado = True
 

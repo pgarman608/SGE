@@ -1,4 +1,5 @@
 class Electrodoméstico():
+    """El init de la clase"""
     def __init__(self,color="BLANCO",consumo="F",precio=100,peso=5):
         self.PRECIO = precio
         if self.__comprobarColor(color):
@@ -7,7 +8,7 @@ class Electrodoméstico():
             self.COLOR = "BLANCO"
         self.CONSUMO = consumo
         self.PESO = peso
-
+    """Getters del precio, color, consumo, Peso"""
     def getPRECIO(self):
         return self.PRECIO
 
@@ -19,19 +20,19 @@ class Electrodoméstico():
 
     def getPESO(self):
         return self.PESO
-
+    """Comprobaremos que el nombre del consumo introducido si es correcto o no pasandolo por el return"""
     def __comprobarConsumoEnergetico(self,consumo):
         aux = True
         if "A" != str.upper(consumo) and "B" != str.upper(consumo) and "C" != str.upper(consumo) and "D" != str.upper(consumo) and "E" != str.upper(consumo) and "F" != str.upper(consumo):
             aux = False
         return aux
-
+    """Comprobaremos que el color del electrodomestico es correcto o no pasandolo por el return"""
     def __comprobarColor(self,color):
         aux = True
         if "BLANCO" != str.upper(color) and "NEGRO" != str.upper(color) and "ROJO" != str.upper(color) and "AZUL" != str.upper(color) and "GRIS" != str.upper(color):
             aux = False
         return aux
-
+    """Calcularemos el precio final y lo pasaremos por el return"""
     def precioFinal(self):
         consumo = 0
         if "A" == self.CONSUMO:
@@ -58,14 +59,14 @@ class Electrodoméstico():
         return self.PRECIO + tamanio + consumo
 
 class Lavadora(Electrodoméstico):
-
+    """El init de la clase"""
     def __init__(self, color="BLANCO", consumo="F", precio=100, peso=5, carga=5):
         super().__init__(color, consumo, precio, peso)
         self.CARGA = carga
-
+    """Getter de la carga"""
     def getCARGA(self):
         return self.CARGA
-
+    """Calcularemos el precio final de la lavadora pasandolo por el return"""
     def precioFinal(self):
         carga = 0
         if self.CARGA >=30:
@@ -73,17 +74,18 @@ class Lavadora(Electrodoméstico):
         return super().precioFinal() + carga
 
 class Television(Electrodoméstico):
+    """El init de la clase"""
     def __init__(self, color="BLANCO", consumo="F", precio=100, peso=5,resolucion=20,fourK=False):
         super().__init__(color, consumo, precio, peso)
         self.RESOLUCION = resolucion
         self.FOURK = fourK
-
+    """Getter de la resolucion y del 4k"""
     def getRESOLUCION(self):
         return self.RESOLUCION
 
     def getFOURK(self):
         return self.FOURK
-
+    """Calcularemos el precio final de la television pasandolo por el return"""
     def precioFinal(self):
         resolucion  = 1.00
         if self.RESOLUCION >= 40:
@@ -94,6 +96,7 @@ class Television(Electrodoméstico):
         return (super().precioFinal() * resolucion) + fourk
 
 class Ejecutable():
+    """El init de la clase"""
     def __init__(self):
         self.electrodomesticos = []
         self.electrodomesticos.append(Electrodoméstico())
@@ -106,6 +109,7 @@ class Ejecutable():
         self.electrodomesticos.append(Television())
         self.electrodomesticos.append(Television("azul","F",250,70,30,True))
         self.electrodomesticos.append(Television("gis","A",150,80,50,False))
+    """Veremos los precios de la lista de electrodomesticos y lo pasaremos por el return"""
     def verPrecios(self):
         countE = 0
         countL = 0
