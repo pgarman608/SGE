@@ -71,8 +71,12 @@ class Vendedor(Empleado):
     """Devolveremos todos los clientes"""
     def clientes(self):
         aux =""
-        for cliente in self.listaClientes:
-            aux = aux + cliente.nombre +", "
+        if len(self.listaClientes) != 0:
+            for cliente in self.listaClientes:
+                if len(self.listaClientes) == 1:
+                    aux = aux + cliente
+                else:
+                    aux = aux + ", " +cliente
         return aux
 
 class JefeZona(Empleado):
