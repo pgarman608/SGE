@@ -9,7 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from Videojuegos import Videojuegos
+videojuegos= Videojuegos()
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -47,22 +48,31 @@ class Ui_Dialog(object):
         self.btnAniadir = QtWidgets.QPushButton(Dialog)
         self.btnAniadir.setGeometry(QtCore.QRect(100, 190, 80, 25))
         self.btnAniadir.setObjectName("btnAniadir")
-
         self.retranslateUi(Dialog)
         self.btnSalir.accepted.connect(Dialog.accept) # type: ignore
         self.btnSalir.rejected.connect(Dialog.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.btnAniadir.clicked.connect(self.recogerVideojuego)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "Añadir Videjuego"))
         self.label.setText(_translate("Dialog", "Codigo"))
         self.label_2.setText(_translate("Dialog", "Nombre"))
         self.label_3.setText(_translate("Dialog", "Horas"))
         self.label_4.setText(_translate("Dialog", "Juego Nuevo"))
         self.btnAniadir.setText(_translate("Dialog", "Añadir Juego"))
 
-
+    def recogerVideojuego(self):
+        codigo = self.teCodigo.text()
+        nombre = self.teNombre.text()
+        horas = self.teHoras.text()
+        if horas != "" and nombre != "" and codigo != "":
+            videojuegos.alta(codigo,nombre,horas)
+        else:
+            dialog = QtWidgets.QDialog()
+            reply = QtWidgets.QMessageBox.question(dialog, 'Error', 'No puede haber campos vacios',
+                    QtWidgets.QMessageBox.Yes)
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

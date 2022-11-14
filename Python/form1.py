@@ -9,7 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import Listar2
+import Aniadir1
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -25,21 +26,21 @@ class Ui_MainWindow(object):
         self.centralwidget.setSizeIncrement(QtCore.QSize(0, 0))
         self.centralwidget.setBaseSize(QtCore.QSize(400, 300))
         self.centralwidget.setObjectName("centralwidget")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(130, 40, 111, 25))
-        self.pushButton.setObjectName("pushButton")
+        self.btnLista = QtWidgets.QPushButton(self.centralwidget)
+        self.btnLista.setGeometry(QtCore.QRect(130, 40, 111, 25))
+        self.btnLista.setObjectName("btnLista")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(130, 10, 111, 17))
         self.label.setObjectName("label")
-        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_3.setGeometry(QtCore.QRect(130, 70, 111, 25))
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_4.setGeometry(QtCore.QRect(130, 130, 111, 25))
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_5.setGeometry(QtCore.QRect(130, 100, 111, 25))
-        self.pushButton_5.setObjectName("pushButton_5")
+        self.btnAniadir = QtWidgets.QPushButton(self.centralwidget)
+        self.btnAniadir.setGeometry(QtCore.QRect(130, 70, 111, 25))
+        self.btnAniadir.setObjectName("btnAniadir")
+        self.btnModificar = QtWidgets.QPushButton(self.centralwidget)
+        self.btnModificar.setGeometry(QtCore.QRect(130, 130, 111, 25))
+        self.btnModificar.setObjectName("btnModificar")
+        self.btnEliminar = QtWidgets.QPushButton(self.centralwidget)
+        self.btnEliminar.setGeometry(QtCore.QRect(130, 100, 111, 25))
+        self.btnEliminar.setObjectName("btnEliminar")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setGeometry(QtCore.QRect(100, 270, 181, 17))
         self.label_3.setObjectName("label_3")
@@ -47,21 +48,32 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        self.btnLista.clicked.connect(self.openLista)
+        self.btnAniadir.clicked.connect(self.openAniadir)
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton.setText(_translate("MainWindow", "Listar"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Ejercicio Serializable"))
+        self.btnLista.setText(_translate("MainWindow", "Listar"))
         self.label.setText(_translate("MainWindow", "Lista de videojuegos"))
-        self.pushButton_3.setText(_translate("MainWindow", "Añadir"))
-        self.pushButton_4.setText(_translate("MainWindow", "Modificar"))
-        self.pushButton_5.setText(_translate("MainWindow", "Eliminar"))
+        self.btnAniadir.setText(_translate("MainWindow", "Añadir"))
+        self.btnModificar.setText(_translate("MainWindow", "Modificar"))
+        self.btnEliminar.setText(_translate("MainWindow", "Eliminar"))
         self.label_3.setText(_translate("MainWindow", "Hecho por: Pablo García Manzano"))
 
-
+    def openLista(self):
+        dialog = QtWidgets.QDialog()
+        qLista = Listar2.Ui_Dialog()
+        qLista.setupUi(dialog)
+        dialog.exec_()
+    def openAniadir(self):
+        dialog = QtWidgets.QDialog()
+        qAniadir = Aniadir1.Ui_Dialog()
+        qAniadir.setupUi(dialog)
+        dialog.exec_()
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

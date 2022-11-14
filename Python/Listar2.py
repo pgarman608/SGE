@@ -9,7 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from Videojuegos import Videojuegos
+videojuegos={}
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -30,15 +31,9 @@ class Ui_Dialog(object):
         self.tablaLista.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         item.setBackground(QtGui.QColor(255, 255, 255, 0))
-        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
-        brush.setStyle(QtCore.Qt.NoBrush)
-        item.setForeground(brush)
         self.tablaLista.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         item.setBackground(QtGui.QColor(255, 255, 255, 0))
-        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
-        brush.setStyle(QtCore.Qt.NoBrush)
-        item.setForeground(brush)
         self.tablaLista.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
         item.setBackground(QtGui.QColor(255, 255, 255, 0))
@@ -51,15 +46,13 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "Listar Videojuegos"))
         item = self.tablaLista.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", "Nombre"))
+        item.setText(_translate("Dialog", "Codigo"))
         item = self.tablaLista.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "Genero"))
+        item.setText(_translate("Dialog", "Nombre"))
         item = self.tablaLista.horizontalHeaderItem(2)
         item.setText(_translate("Dialog", "Num de horas"))
-
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
