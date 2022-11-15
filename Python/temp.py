@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'untitled/form.ui'
+# Form implementation generated from reading ui file 'form.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -9,8 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import Listar2
-import Aniadir1
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -26,54 +25,61 @@ class Ui_MainWindow(object):
         self.centralwidget.setSizeIncrement(QtCore.QSize(0, 0))
         self.centralwidget.setBaseSize(QtCore.QSize(400, 300))
         self.centralwidget.setObjectName("centralwidget")
-        self.btnLista = QtWidgets.QPushButton(self.centralwidget)
-        self.btnLista.setGeometry(QtCore.QRect(130, 40, 111, 25))
-        self.btnLista.setObjectName("btnLista")
+        self.btnListar = QtWidgets.QPushButton(self.centralwidget)
+        self.btnListar.setGeometry(QtCore.QRect(130, 50, 111, 25))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.btnListar.setFont(font)
+        self.btnListar.setObjectName("btnListar")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(130, 10, 111, 17))
+        self.label.setGeometry(QtCore.QRect(110, 10, 141, 20))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.label.setFont(font)
         self.label.setObjectName("label")
         self.btnAniadir = QtWidgets.QPushButton(self.centralwidget)
-        self.btnAniadir.setGeometry(QtCore.QRect(130, 70, 111, 25))
+        self.btnAniadir.setGeometry(QtCore.QRect(130, 90, 111, 25))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.btnAniadir.setFont(font)
         self.btnAniadir.setObjectName("btnAniadir")
         self.btnModificar = QtWidgets.QPushButton(self.centralwidget)
-        self.btnModificar.setGeometry(QtCore.QRect(130, 130, 111, 25))
+        self.btnModificar.setGeometry(QtCore.QRect(130, 170, 111, 25))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.btnModificar.setFont(font)
         self.btnModificar.setObjectName("btnModificar")
         self.btnEliminar = QtWidgets.QPushButton(self.centralwidget)
-        self.btnEliminar.setGeometry(QtCore.QRect(130, 100, 111, 25))
+        self.btnEliminar.setGeometry(QtCore.QRect(130, 130, 111, 25))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.btnEliminar.setFont(font)
         self.btnEliminar.setObjectName("btnEliminar")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(100, 270, 181, 17))
+        self.label_3.setGeometry(QtCore.QRect(80, 270, 251, 20))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        self.btnLista.clicked.connect(self.openLista)
-        self.btnAniadir.clicked.connect(self.openAniadir)
-
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Ejercicio Serializable"))
-        self.btnLista.setText(_translate("MainWindow", "Listar"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.btnListar.setText(_translate("MainWindow", "Listar"))
         self.label.setText(_translate("MainWindow", "Lista de videojuegos"))
         self.btnAniadir.setText(_translate("MainWindow", "Añadir"))
         self.btnModificar.setText(_translate("MainWindow", "Modificar"))
         self.btnEliminar.setText(_translate("MainWindow", "Eliminar"))
         self.label_3.setText(_translate("MainWindow", "Hecho por: Pablo García Manzano"))
 
-    def openLista(self):
-        dialog = QtWidgets.QDialog()
-        qLista = Listar2.Ui_Dialog()
-        qLista.setupUi(dialog)
-        dialog.exec_()
-    def openAniadir(self):
-        dialog = QtWidgets.QDialog()
-        qAniadir = Aniadir1.Ui_Dialog()
-        qAniadir.setupUi(dialog)
-        dialog.exec_()
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

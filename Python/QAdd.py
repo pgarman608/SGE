@@ -21,39 +21,69 @@ class Ui_Dialog(object):
         Dialog.setBaseSize(QtCore.QSize(400, 300))
         self.btnSalir = QtWidgets.QDialogButtonBox(Dialog)
         self.btnSalir.setGeometry(QtCore.QRect(310, 260, 81, 32))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.btnSalir.setFont(font)
         self.btnSalir.setOrientation(QtCore.Qt.Horizontal)
         self.btnSalir.setStandardButtons(QtWidgets.QDialogButtonBox.Ok)
         self.btnSalir.setObjectName("btnSalir")
         self.label = QtWidgets.QLabel(Dialog)
         self.label.setGeometry(QtCore.QRect(20, 60, 51, 17))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.label.setFont(font)
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(Dialog)
-        self.label_2.setGeometry(QtCore.QRect(20, 110, 51, 17))
+        self.label_2.setGeometry(QtCore.QRect(20, 110, 61, 17))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(Dialog)
         self.label_3.setGeometry(QtCore.QRect(20, 160, 51, 17))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
         self.teCodigo = QtWidgets.QLineEdit(Dialog)
-        self.teCodigo.setGeometry(QtCore.QRect(80, 50, 113, 25))
+        self.teCodigo.setGeometry(QtCore.QRect(100, 50, 113, 25))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.teCodigo.setFont(font)
         self.teCodigo.setObjectName("teCodigo")
         self.teNombre = QtWidgets.QLineEdit(Dialog)
-        self.teNombre.setGeometry(QtCore.QRect(80, 100, 113, 25))
+        self.teNombre.setGeometry(QtCore.QRect(100, 100, 113, 25))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.teNombre.setFont(font)
         self.teNombre.setObjectName("teNombre")
         self.teHoras = QtWidgets.QLineEdit(Dialog)
-        self.teHoras.setGeometry(QtCore.QRect(80, 150, 113, 25))
+        self.teHoras.setGeometry(QtCore.QRect(100, 150, 113, 25))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.teHoras.setFont(font)
         self.teHoras.setObjectName("teHoras")
         self.label_4 = QtWidgets.QLabel(Dialog)
-        self.label_4.setGeometry(QtCore.QRect(20, 10, 71, 17))
+        self.label_4.setGeometry(QtCore.QRect(20, 10, 91, 21))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.label_4.setFont(font)
         self.label_4.setObjectName("label_4")
         self.btnAniadir = QtWidgets.QPushButton(Dialog)
-        self.btnAniadir.setGeometry(QtCore.QRect(100, 190, 80, 25))
+        self.btnAniadir.setGeometry(QtCore.QRect(110, 190, 91, 25))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.btnAniadir.setFont(font)
         self.btnAniadir.setObjectName("btnAniadir")
+
         self.retranslateUi(Dialog)
         self.btnSalir.accepted.connect(Dialog.accept) # type: ignore
         self.btnSalir.rejected.connect(Dialog.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Dialog)
         self.btnAniadir.clicked.connect(self.recogerVideojuego)
+        self.btnSalir.clicked.connect(videojuegos.exportarVideojuegos)
 
+        
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Añadir Videjuego"))
@@ -64,20 +94,18 @@ class Ui_Dialog(object):
         self.btnAniadir.setText(_translate("Dialog", "Añadir Juego"))
 
     def recogerVideojuego(self):
+        dialog = QtWidgets.QDialog()
         codigo = self.teCodigo.text()
         nombre = self.teNombre.text()
         horas = self.teHoras.text()
         if horas != "" and nombre != "" and codigo != "":
-            videojuegos.alta(codigo,nombre,horas)
-        else:
-            dialog = QtWidgets.QDialog()
-            reply = QtWidgets.QMessageBox.question(dialog, 'Error', 'No puede haber campos vacios',
+            if(videojuegos.alta(codigo,nombre,horas)==-1):
+                QtWidgets.QMessageBox.question(dialog, 'Error', 'Ya existe ese videojuego con ese codigo',
                     QtWidgets.QMessageBox.Yes)
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
+            else:
+                QtWidgets.QMessageBox.question(dialog, '', 'Videojuego Añadidio',
+                    QtWidgets.QMessageBox.Yes)
+        else:
+            QtWidgets.QMessageBox.question(dialog, 'Error', 'No puede haber campos vacios',
+                    QtWidgets.QMessageBox.Yes)
+

@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Videojuegos import Videojuegos
-videojuegos={}
+videojuegos = Videojuegos()
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -21,11 +21,17 @@ class Ui_Dialog(object):
         Dialog.setBaseSize(QtCore.QSize(400, 300))
         self.btnsalir = QtWidgets.QDialogButtonBox(Dialog)
         self.btnsalir.setGeometry(QtCore.QRect(300, 10, 81, 32))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.btnsalir.setFont(font)
         self.btnsalir.setOrientation(QtCore.Qt.Horizontal)
         self.btnsalir.setStandardButtons(QtWidgets.QDialogButtonBox.Ok)
         self.btnsalir.setObjectName("btnsalir")
         self.tablaLista = QtWidgets.QTableWidget(Dialog)
         self.tablaLista.setGeometry(QtCore.QRect(10, 50, 371, 231))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.tablaLista.setFont(font)
         self.tablaLista.setObjectName("tablaLista")
         self.tablaLista.setColumnCount(3)
         self.tablaLista.setRowCount(0)
@@ -44,6 +50,8 @@ class Ui_Dialog(object):
         self.btnsalir.rejected.connect(Dialog.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
+        self.actualizarTabla()
+
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Listar Videojuegos"))
@@ -53,11 +61,14 @@ class Ui_Dialog(object):
         item.setText(_translate("Dialog", "Nombre"))
         item = self.tablaLista.horizontalHeaderItem(2)
         item.setText(_translate("Dialog", "Num de horas"))
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
+    
+    def actualizarTabla(self):
+        numfilas = len(videojuegos.Lista)
+        numColumnas = len(videojuegos.Lista[0])
+        self.tablaLista.setColumnCount(numColumnas)
+        self.tablaLista.setRowCount(numfilas)
+        for fila in range(numfilas):
+            for columma in range(numColumnas):
+                item = videojuegos.Lista[fila][columma]
+                print(item)
+                self.tablaLista.setItem(fila-1, columma, QtWidgets.QTableWidgetItem(item))
