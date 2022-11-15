@@ -91,7 +91,7 @@ class Ui_MainWindow(object):
     def openLista(self):
         videojuegos = Videojuegos.Videojuegos()
         dialog = QtWidgets.QDialog()
-        if len(videojuegos.Lista) == 0 or len(videojuegos.Lista[0]) == 0:
+        if len(videojuegos.Lista) == 0 :
             QtWidgets.QMessageBox.question(dialog, 'Error', 'La lista de videojuegos esta vacia',
                     QtWidgets.QMessageBox.Yes)
         else:

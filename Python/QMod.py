@@ -108,10 +108,18 @@ class Ui_Dialog(object):
                     QtWidgets.QMessageBox.Yes)
     
     def modificarVideojuego(self):
+        dialog = QtWidgets.QDialog()
         if self.leGenero.text() != "" or  self.leNombre.text() != "":
             self.videojuegos.modificarVideojuego(self.leCodigo.text(),self.leNombre.text(),self.leGenero.text())
             QtWidgets.QMessageBox.question(dialog, '', 'Videojuego Modificado',
                     QtWidgets.QMessageBox.Yes)
+            self.leCodigo.setEnabled(True)
+            self.btnBuscar.setEnabled(True)
+            self.leGenero.setEnabled(False)
+            self.leNombre.setEnabled(False)
+            self.btnModificar.setEnabled(False)
+            self.leGenero.setText("")
+            self.leNombre.setText("")
         else:
             QtWidgets.QMessageBox.question(dialog, 'Error', 'No puede haber campos vacios',
                     QtWidgets.QMessageBox.Yes)

@@ -65,11 +65,11 @@ class Ui_Dialog(object):
     
     def actualizarTabla(self):
         numfilas = len(self.videojuegos.Lista)
-        numColumnas = len(self.videojuegos.Lista[0])
-        self.tablaLista.setColumnCount(numColumnas)
+        self.tablaLista.setColumnCount(3)
         self.tablaLista.setRowCount(numfilas)
         for fila in range(numfilas):
-            if len(self.videojuegos.Lista[fila]) > 0:
-                for columma in range(numColumnas):
-                    item = self.videojuegos.Lista[fila][columma]
-                    self.tablaLista.setItem(fila, columma, QtWidgets.QTableWidgetItem(item))
+                item = self.videojuegos.Lista[fila]
+                self.tablaLista.setItem(fila, 0, QtWidgets.QTableWidgetItem(item.codigo))
+                self.tablaLista.setItem(fila, 1, QtWidgets.QTableWidgetItem(item.nombre))
+                self.tablaLista.setItem(fila, 2, QtWidgets.QTableWidgetItem(item.genero))
+

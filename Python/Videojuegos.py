@@ -1,5 +1,6 @@
 import pickle
 import os
+from Videojuego import Videojuego
 class Videojuegos():
     def __init__(self):
         pick = open("videojuegos.txt","rb")
@@ -12,13 +13,13 @@ class Videojuegos():
         else:
             self.Lista = []
 
-    def alta(self,codigo="",nombre="",Genero=""):
+    def alta(self,codigo="",nombre="",genero=""):
         error = 0
-        if(len(self.Lista) == 0 or len(self.Lista[0]) == 0):
-            self.Lista = [[codigo,nombre,Genero]]
+        if len(self.Lista) == 0 :
+            self.Lista = [Videojuego(codigo, nombre, genero)]
         else:
             if(self.comprobarCodigo(codigo)):
-                self.Lista.append([codigo,nombre,Genero])
+                self.Lista.append(Videojuego(codigo, nombre, genero))
             else:
                 error = -1
         return error
@@ -31,7 +32,7 @@ class Videojuegos():
     def comprobarCodigo(self,codigo):
         comp = True
         for i in range(len(self.Lista)):
-            if self.Lista[i][0] == codigo:
+            if self.Lista[i].codigo == codigo:
                 comp = False
         return comp
 
@@ -41,24 +42,23 @@ class Videojuegos():
             self.Lista.remove(listaeliminar)
         for i in range(len(self.Lista)-1):
             if self.Lista[i][0] == codigo:
-                listaeliminar = self.Lista[i]
-                self.Lista.remove(listaeliminar)
+                videojuegoEliminar = self.Lista[i]
+                self.Lista.remove(videojuegoEliminar)
 
     def buscarVideojuego(self,codigo):
-        listarecoger = []
+        videojuegoRecorer = Videojuego(codigo, nombre="", genero="")
         if len(self.Lista)-1 == 0:
             listarecoger = self.Lista[0]
         for i in range(len(self.Lista)-1):
-            if self.Lista[i][0] == codigo:
-                listarecoger = self.Lista[i]
-        return listarecoger[1],listarecoger[2]
-
-    def modificarVideojuego(self,codigo,nombre,Genero):
+            if self.Lista[i].codigo == codigo:
+                videojuegoRecorer = self.Lista[i]
+        return videojuegoRecorer.nombre, videojuegoRecorer.genero
+    def modificarVideojuego(self,codigo,nombre,genero):
         if len(self.Lista)-1 == 0:
-            if self.Lista[0][0] == codigo:
-                self.Lista[0][1] = nombre
-                self.Lista[0][2] = Genero
+            if self.Lista[0].codigo == codigo:
+                self.Lista[0].nombre = nombre
+                self.Lista[0].genero = genero
         for i in range(len(self.Lista)-1):
-            if self.Lista[i][0] == codigo:
-                self.Lista[i][1] = nombre
-                self.Lista[i][2] = Genero
+            if self.Lista[0].codigo == codigo:
+                self.Lista[0].nombre = nombre
+                self.Lista[0].genero = genero
