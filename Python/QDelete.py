@@ -10,9 +10,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Videojuegos import Videojuegos
-videojuegos = Videojuegos()
+
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
+        self.videojuegos = Videojuegos()
         Dialog.setObjectName("Dialog")
         Dialog.resize(300, 200)
         Dialog.setMinimumSize(QtCore.QSize(300, 200))
@@ -57,7 +58,7 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
         self.btnEliminar.clicked.connect(self.eliminarVideojuego)
-        self.btnSalir.clicked.connect(videojuegos.exportarVideojuegos)
+        self.btnSalir.clicked.connect(self.videojuegos.exportarVideojuegos)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
@@ -70,8 +71,8 @@ class Ui_Dialog(object):
         dialog = QtWidgets.QDialog()
         codigo = self.leCodigo.text()
         if codigo != "":
-            if not(videojuegos.comprobarCodigo(codigo)):
-                videojuegos.eliminarVideojuego(codigo)
+            if not(self.videojuegos.comprobarCodigo(codigo)):
+                self.videojuegos.eliminarVideojuego(codigo)
                 QtWidgets.QMessageBox.question(dialog, '', 'Videojuego Eliminado',
                     QtWidgets.QMessageBox.Yes)
             else:
@@ -80,11 +81,3 @@ class Ui_Dialog(object):
         else:
             QtWidgets.QMessageBox.question(dialog, 'Error', 'No puede haber campos vacios',
                     QtWidgets.QMessageBox.Yes)
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())

@@ -10,10 +10,11 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Videojuegos import Videojuegos
-videojuegos = Videojuegos()
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
+        self.videojuegos = Videojuegos()
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
         Dialog.setMinimumSize(QtCore.QSize(400, 300))
@@ -63,12 +64,12 @@ class Ui_Dialog(object):
         item.setText(_translate("Dialog", "Num de horas"))
     
     def actualizarTabla(self):
-        numfilas = len(videojuegos.Lista)
-        numColumnas = len(videojuegos.Lista[0])
+        numfilas = len(self.videojuegos.Lista)
+        numColumnas = len(self.videojuegos.Lista[0])
         self.tablaLista.setColumnCount(numColumnas)
         self.tablaLista.setRowCount(numfilas)
         for fila in range(numfilas):
-            for columma in range(numColumnas):
-                item = videojuegos.Lista[fila][columma]
-                print(item)
-                self.tablaLista.setItem(fila-1, columma, QtWidgets.QTableWidgetItem(item))
+            if len(self.videojuegos.Lista[fila]) > 0:
+                for columma in range(numColumnas):
+                    item = self.videojuegos.Lista[fila][columma]
+                    self.tablaLista.setItem(fila, columma, QtWidgets.QTableWidgetItem(item))

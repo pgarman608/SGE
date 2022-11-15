@@ -13,7 +13,7 @@ import QAdd
 import QLista
 import QDelete
 import Videojuegos
-
+import QMod
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -110,20 +110,21 @@ class Ui_MainWindow(object):
         dialog = QtWidgets.QDialog()
         if len(videojuegos.Lista) == 0:
             QtWidgets.QMessageBox.question(dialog, 'Error', 'La lista de videojuegos esta vacia',
-                    QtWidgets.QMessageBox.Yes)    
+                    QtWidgets.QMessageBox.Yes)
         else:
             qEliminar = QDelete.Ui_Dialog()
             qEliminar.setupUi(dialog)
             dialog.exec_()
-    
+
     def openModificar(self):
         videojuegos = Videojuegos.Videojuegos()
         dialog = QtWidgets.QDialog()
         if len(videojuegos.Lista) == 0:
             QtWidgets.QMessageBox.question(dialog, 'Error', 'La lista de videojuegos esta vacia',
-                    QtWidgets.QMessageBox.Yes)    
+                QtWidgets.QMessageBox.Yes)
         else:
-            
+            qModificar = QMod.Ui_Dialog()
+            qModificar.setupUi(dialog)
             dialog.exec_()
 if __name__ == "__main__":
     import sys
