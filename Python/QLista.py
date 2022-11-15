@@ -61,7 +61,7 @@ class Ui_Dialog(object):
         item = self.tablaLista.horizontalHeaderItem(1)
         item.setText(_translate("Dialog", "Nombre"))
         item = self.tablaLista.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "Num de horas"))
+        item.setText(_translate("Dialog", "Genero"))
     
     def actualizarTabla(self):
         numfilas = len(self.videojuegos.Lista)

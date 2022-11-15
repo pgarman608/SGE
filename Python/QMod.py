@@ -58,10 +58,10 @@ class Ui_Dialog(object):
         self.leNombre.setEnabled(False)
         self.leNombre.setGeometry(QtCore.QRect(80, 70, 113, 20))
         self.leNombre.setObjectName("leNombre")
-        self.leHoras = QtWidgets.QLineEdit(Dialog)
-        self.leHoras.setEnabled(False)
-        self.leHoras.setGeometry(QtCore.QRect(80, 110, 113, 20))
-        self.leHoras.setObjectName("leHoras")
+        self.leGenero = QtWidgets.QLineEdit(Dialog)
+        self.leGenero.setEnabled(False)
+        self.leGenero.setGeometry(QtCore.QRect(80, 110, 113, 20))
+        self.leGenero.setObjectName("leGenero")
         self.btnModificar = QtWidgets.QPushButton(Dialog)
         self.btnModificar.setEnabled(False)
         self.btnModificar.setGeometry(QtCore.QRect(100, 150, 75, 23))
@@ -75,12 +75,15 @@ class Ui_Dialog(object):
         self.btnSalir.rejected.connect(Dialog.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
+        self.btnBuscar.clicked.connect(self.buscarVideojuego)
+        self.btnModificar.clicked.connect(self.modificarVideojuego)
+        self.btnSalir.clicked.connect(self.videojuegos.exportarVideojuegos)
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Modificar Videojuego"))
         self.label.setText(_translate("Dialog", "Codigo"))
         self.label_2.setText(_translate("Dialog", "Nombre"))
-        self.label_3.setText(_translate("Dialog", "Horas"))
+        self.label_3.setText(_translate("Dialog", "Genero"))
         self.btnBuscar.setText(_translate("Dialog", "Buscar"))
         self.btnModificar.setText(_translate("Dialog", "Modificar"))
 
@@ -89,9 +92,25 @@ class Ui_Dialog(object):
         codigo = self.leCodigo.text()
         if codigo != "":
             if not(self.videojuegos.comprobarCodigo(codigo)):
-                print("")
+                self.leCodigo.setEnabled(False)
+                self.btnBuscar.setEnabled(False)
+                self.leGenero.setEnabled(True)
+                self.leNombre.setEnabled(True)
+                self.btnModificar.setEnabled(True)
+                nombre,Genero = self.videojuegos.buscarVideojuego(codigo)
+                self.leGenero.setText(Genero)
+                self.leNombre.setText(nombre)
             else:
                 QtWidgets.QMessageBox.question(dialog, 'Error', 'No existe ningun videojuego con es codigo',
+                    QtWidgets.QMessageBox.Yes)
+        else:
+            QtWidgets.QMessageBox.question(dialog, 'Error', 'No puede haber campos vacios',
+                    QtWidgets.QMessageBox.Yes)
+    
+    def modificarVideojuego(self):
+        if self.leGenero.text() != "" or  self.leNombre.text() != "":
+            self.videojuegos.modificarVideojuego(self.leCodigo.text(),self.leNombre.text(),self.leGenero.text())
+            QtWidgets.QMessageBox.question(dialog, '', 'Videojuego Modificado',
                     QtWidgets.QMessageBox.Yes)
         else:
             QtWidgets.QMessageBox.question(dialog, 'Error', 'No puede haber campos vacios',

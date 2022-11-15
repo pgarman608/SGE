@@ -57,12 +57,12 @@ class Ui_Dialog(object):
         font.setPointSize(11)
         self.teNombre.setFont(font)
         self.teNombre.setObjectName("teNombre")
-        self.teHoras = QtWidgets.QLineEdit(Dialog)
-        self.teHoras.setGeometry(QtCore.QRect(100, 150, 113, 25))
+        self.teGenero = QtWidgets.QLineEdit(Dialog)
+        self.teGenero.setGeometry(QtCore.QRect(100, 150, 113, 25))
         font = QtGui.QFont()
         font.setPointSize(11)
-        self.teHoras.setFont(font)
-        self.teHoras.setObjectName("teHoras")
+        self.teGenero.setFont(font)
+        self.teGenero.setObjectName("teGenero")
         self.label_4 = QtWidgets.QLabel(Dialog)
         self.label_4.setGeometry(QtCore.QRect(20, 10, 91, 21))
         font = QtGui.QFont()
@@ -89,7 +89,7 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "Añadir Videjuego"))
         self.label.setText(_translate("Dialog", "Codigo"))
         self.label_2.setText(_translate("Dialog", "Nombre"))
-        self.label_3.setText(_translate("Dialog", "Horas"))
+        self.label_3.setText(_translate("Dialog", "Genero"))
         self.label_4.setText(_translate("Dialog", "Juego Nuevo"))
         self.btnAniadir.setText(_translate("Dialog", "Añadir Juego"))
 
@@ -97,9 +97,9 @@ class Ui_Dialog(object):
         dialog = QtWidgets.QDialog()
         codigo = self.teCodigo.text()
         nombre = self.teNombre.text()
-        horas = self.teHoras.text()
-        if horas != "" and nombre != "" and codigo != "":
-            if(videojuegos.alta(codigo,nombre,horas)==-1):
+        Genero = self.teGenero.text()
+        if Genero != "" and nombre != "" and codigo != "":
+            if(videojuegos.alta(codigo,nombre,Genero)==-1):
                 QtWidgets.QMessageBox.question(dialog, 'Error', 'Ya existe ese videojuego con ese codigo',
                     QtWidgets.QMessageBox.Yes)
             else:

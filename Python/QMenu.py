@@ -126,6 +126,7 @@ class Ui_MainWindow(object):
             qModificar = QMod.Ui_Dialog()
             qModificar.setupUi(dialog)
             dialog.exec_()
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
