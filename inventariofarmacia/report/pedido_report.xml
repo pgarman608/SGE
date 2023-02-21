@@ -1,0 +1,26 @@
+<odoo>
+    <record model="ir.actions.report" id="inventariofarmacia.pedido_report" >
+        <field name="name"> Informe del Pedido</field>
+        <field name="model">inventariofarmacia.pedido</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">inventariofarmacia.pedido_report_view</field>
+        <field name="report_file">inventariofarmacia.pedido_report</field>
+        <field name="binding_model_id" ref="model_inventariofarmacia_pedido"/>
+        <field name="binding_type">report</field>
+
+    </record>
+    <template id="pedido_report_view">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <h1>Pedido </h1><br />
+                <t t-foreach="docs" t-as="pedido">
+                    <ul>
+                        <li>    Codigo <span t-field="pedido.name" /></li>
+                        <li>    Nombre de la empresa <span t-field="pedido.nombre_empresa" /></li>
+                        <li>    Precio total <span t-field="pedido.precio_total" /></li>
+                    </ul>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
