@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<odoo>
+		<record model="ir.module.category" id="inventariofarmacia.category_user">
+            <field name="name">Grupo</field>
+            <field name="description">Ayuda a gestionar la farmacia</field>
+            <field name="sequence">100</field>
+	    </record>
+
+		<record model="res.groups" id="group_usuario_inventariofarmacia">
+        	<field name="name">Usuario</field>
+            <field name="category_id" ref="inventariofarmacia.category_user"></field>
+            <field name="comment"> Usuarios solo pueden leer</field>
+        </record>
+
+		<record model="res.groups" id="group_inventariofarmacia_administrador">
+                <field name="name">Administrador</field>
+                <field name="category_id" ref="inventariofarmacia.category_user"></field>
+                <field name="comment"> Administrador pueden leer y escribir</field>
+                <!-- tambien pertenecen al grupo usuario, mirar documentación ORM-->
+                <field name="implied_ids" eval="[(4, ref('group_usuario_inventariofarmacia'))]"/>
+                 <!--Añadimos a los usuarios administradores de odoo -->
+                <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
+            </record>
+	</odoo>

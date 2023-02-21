@@ -1,0 +1,249 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="inventariofarmacia.medicamento_list_view">
+      <field name="name">inventariofarmacia.medicamento.view.tree</field>
+      <field name="model">inventariofarmacia.medicamento</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="nombre"/>
+            <field name="fabricante"/>
+            <field name="forma"/>
+            <field name="numlote"/>
+            <field name="precio"/>
+        </tree>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="inventariofarmacia.factura_list_view">
+      <field name="name">inventariofarmacia.factura.view.tree</field>
+      <field name="model">inventariofarmacia.factura</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="nombre_cliente"/>
+            <field name="precio_total"/>
+            <field name="fecha_factura"/>
+        </tree>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="inventariofarmacia.pedido_list_view">
+      <field name="name">inventariofarmacia.pedido.view.tree</field>
+      <field name="model">inventariofarmacia.pedido</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="nombre_empresa"/>
+            <field name="precio_total"/>
+            <field name="fecha_pedido"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="inventariofarmacia.medicamento_search_view">
+      <field name="name">inventariofarmacia.medicamento.view.search</field>
+      <field name="model">inventariofarmacia.medicamento</field>
+      <field name="arch" type="xml">
+        <search>
+            <field name="name"/>
+            <field name="nombre"/>
+            <field name="fabricante"/>
+            <field name="forma"/>
+            <field name="numlote"/>
+            <field name="precio"/>
+          <group>
+            <filter name="group_by_nombre" string="nombre" context="{'gropup_by':'nombre'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="inventariofarmacia.factura_search_view">
+      <field name="name">inventariofarmacia.factura.view.search</field>
+      <field name="model">inventariofarmacia.factura</field>
+      <field name="arch" type="xml">
+        <search>
+            <field name="name"/>
+            <field name="nombre_cliente"/>
+            <field name="precio_total"/>
+            <field name="fecha_factura"/>
+          <group>
+            <filter name="group_by_nombre" string="nombre" context="{'gropup_by':'nombre_cliente'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="inventariofarmacia.pedido_search_view">
+      <field name="name">inventariofarmacia.pedido.view.search</field>
+      <field name="model">inventariofarmacia.pedido</field>
+      <field name="arch" type="xml">
+        <search>
+            <field name="name"/>
+            <field name="nombre_empresa"/>
+            <field name="precio_total"/>
+            <field name="fecha_pedido"/>
+          <group>
+            <filter name="group_by_nombre" string="nombre" context="{'gropup_by':'nombre_empresa'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="inventariofarmacia.medicamento_form_view">
+        <field name="name">inventariofarmacia.medicamento.from.view</field>
+        <field name="model">inventariofarmacia.medicamento</field>
+        <field name="arch" type="xml">
+            <form string="Información del medicamento">
+                <sheet>
+                    <div class="oe_title">
+                        <h1 style="font-size:36px;">Medicamento</h1>
+                        <table>
+                            <tr>
+                                <td><h2>Codigo</h2></td>
+                                <td><h2><field name="name" placeholder="Código"/></h2></td>
+                            </tr>
+                            <tr>
+                                <td><h2>Nombre</h2></td>
+                                <td><h2><field name="nombre" placeholder="Nombre"/></h2></td>
+                            </tr>
+                            <tr>
+                                <td><h2>Fabricante</h2></td>
+                                <td><h2><field name="fabricante" placeholder="Fabricante"/></h2></td>
+                            </tr>
+                            <tr>
+                                <td><h2>Forma</h2></td>
+                                <td><h2><field name="forma" placeholder="Forma"/></h2></td>
+                            </tr>
+                            <tr>
+                                <td><h2>Nº Lote</h2></td>
+                                <td><h2><field name="numlote" placeholder="Numlote"/></h2></td>
+                            </tr>
+                            <tr>
+                                <td><h2>Precio</h2></td>
+                                <td><h2><field name="precio" placeholder="Precio"/></h2></td>
+                            </tr>
+                        </table>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="inventariofarmacia.factura_form_view">
+        <field name="name">inventariofarmacia.factura.from.view</field>
+        <field name="model">inventariofarmacia.factura</field>
+        <field name="arch" type="xml">
+            <form string="Información de la Factura">
+                <sheet>
+                    <div class="oe_title">
+                        <h1 style="font-size:36px;">Factura</h1>
+                        <table>
+                            <tr>
+                                <td><h2>Codigo</h2></td>
+                                <td><h2><field name="name" placeholder="Código"/></h2></td>
+                            </tr>
+                            <tr>
+                                <td><h2>Nombre del cliente</h2></td>
+                                <td><h2><field name="nombre_cliente" placeholder="Nombre"/></h2></td>
+                            </tr>
+                            <tr>
+                                <td><h2>Precio Total</h2></td>
+                                <td><h2><field name="precio_total" placeholder="Precio"/></h2></td>
+                            </tr>
+                            <tr>
+                                <td><h2>Fecha</h2></td>
+                                <td><h2><field name="fecha_factura" placeholder="Fecha"/></h2></td>
+                            </tr>
+                            <tr>
+                                <td><h2>Medicamentos</h2></td>
+                                <td><h2><field name="medicamentos_ids" placeholder="Medicamentos"/></h2></td>
+                            </tr>
+                        </table>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="inventariofarmacia.pedido_form_view">
+        <field name="name">inventariofarmacia.pedido.from.view</field>
+        <field name="model">inventariofarmacia.pedido</field>
+        <field name="arch" type="xml">
+            <form string="Información del Pedido">
+                <sheet>
+                    <div class="oe_title">
+                        <h1 style="font-size:36px;">Pedido</h1>
+                        <table>
+                            <tr>
+                                <td><h2>Codigo</h2></td>
+                                <td><h2><field name="name" placeholder="Código"/></h2></td>
+                            </tr>
+                            <tr>
+                                <td><h2>Nombre de la Empresa</h2></td>
+                                <td><h2><field name="nombre_empresa" placeholder="Nombre"/></h2></td>
+                            </tr>
+                            <tr>
+                                <td><h2>Precio Total</h2></td>
+                                <td><h2><field name="precio_total" placeholder="Precio"/></h2></td>
+                            </tr>
+                            <tr>
+                                <td><h2>Fecha</h2></td>
+                                <td><h2><field name="fecha_pedido" placeholder="Fecha"/></h2></td>
+                            </tr>
+                            <tr>
+                                <td><h2>Medicamentos</h2></td>
+                                <td><h2><field name="medicamentos_ids" placeholder="Medicamentos"/></h2></td>
+                            </tr>
+                        </table>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="inventariofarmacia.factura_calendar_view">
+      <field name="name">inventariofarmacia.factura.view.calendar</field>
+      <field name="model">inventariofarmacia.factura</field>
+      <field name="arch" type="xml">
+        <calendar string="Fecha de la Factura" date_start="fecha_factura" color="nombre_cliente" mode="month">
+            <field name="name"/>
+            <field name="nombre_cliente"/>
+            <field name="precio_total"/>
+        </calendar>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="inventariofarmacia.pedido_calendar_view">
+      <field name="name">inventariofarmacia.pedido.view.calendar</field>
+      <field name="model">inventariofarmacia.pedido</field>
+      <field name="arch" type="xml">
+        <calendar string="Fecha del pedido" date_start="fecha_pedido" color="nombre_empresa" mode="month">
+            <field name="name"/>
+            <field name="nombre_empresa"/>
+            <field name="precio_total"/>
+        </calendar>
+      </field>
+    </record>
+    <record model="ir.actions.act_window" id="inventariofarmacia.medicamento_action_window">
+      <field name="name">Medicamentos</field>
+      <field name="res_model">inventariofarmacia.medicamento</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="inventariofarmacia.factura_action_window">
+      <field name="name">Facturas</field>
+      <field name="res_model">inventariofarmacia.factura</field>
+      <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <record model="ir.actions.act_window" id="inventariofarmacia.pedido_action_window">
+      <field name="name">Pedidos</field>
+      <field name="res_model">inventariofarmacia.pedido</field>
+      <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <menuitem name="Farmacia" id="inventariofarmacia.menu_root"/>
+    <menuitem name="Medicamentos" id="inventariofarmacia.menu_medicamentos" parent="inventariofarmacia.menu_root"/>
+    <menuitem name="Los Medicamentos" id="inventariofarmacia.menu_medicamento_list" parent="inventariofarmacia.menu_medicamentos" action="inventariofarmacia.medicamento_action_window"/>
+
+    <menuitem name="Facturas" id="inventariofarmacia.menu_facturas" parent="inventariofarmacia.menu_root"/>
+    <menuitem name="Las Facturas" id="inventariofarmacia.menu_facturas_list" parent="inventariofarmacia.menu_facturas" action="inventariofarmacia.factura_action_window"/>
+
+    <menuitem name="Pedidos" id="inventariofarmacia.menu_pedidos" parent="inventariofarmacia.menu_root"/>
+    <menuitem name="Los Pedidos" id="inventariofarmacia.menu_pedidos_list" parent="inventariofarmacia.menu_pedidos" action="inventariofarmacia.pedido_action_window"/>
+
+  </data>
+</odoo>
